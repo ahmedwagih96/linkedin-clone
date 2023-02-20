@@ -1,5 +1,6 @@
 import "./Feed.css";
-import { useEffect, useState } from "react";
+// Custom Hooks
+import usePosts from "../../hooks/usePosts"
 
 // Material UI
 import {
@@ -17,49 +18,13 @@ import FlipMove from "react-flip-move";
 import InputOption from "../InputOption/InputOption";
 import Posts from "../Posts/Posts";
 
-// Firebase
-import { db } from "../../firebase";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  query,
-  orderBy,
-  onSnapshot,
-} from "firebase/firestore";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
 
 function Feed() {
-  const [posts, setPosts] = useState([]);
-  const [input, setInput] = useState("");
-  const user = useSelector(selectUser);
-  useEffect(() => {
-    const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-    onSnapshot(q, (snapshot) => {
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      );
-    });
-  }, []);
+  const [posts, sendPost, input, setInput] = usePosts()
 
-  const sendPost = (e) => {
-    e.preventDefault();
-    // setPosts
-    const postsCol = collection(db, "posts");
-    addDoc(postsCol, {
-      name: user.displayName,
-      description: user.email,
-      message: input,
-      photoUrl: user.photoURL || "",
-      timestamp: serverTimestamp(),
-    }).then(() => setInput(""));
-  };
   return (
     <div className="feed">
+      {/* INPUT */}
       <div className="feed__inputContainer">
         <div className="feed__input">
           <Create />
@@ -85,6 +50,7 @@ function Feed() {
           />
         </div>
       </div>
+      {/* POSTS */}
       <FlipMove>
         {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
           <Posts

@@ -1,12 +1,11 @@
 import "./HeaderOption.css";
 // Material UI
 import { Avatar } from "@mui/material";
-// Redux
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
+// Custom Hook
+import useUser from "../../hooks/useUser";
 
 function HeaderOption({ Icon, title, avatar, onClick }) {
-  const user = useSelector(selectUser);
+  const {user} = useUser()
   return (
     <div className="headerOption" onClick={onClick}>
       {Icon && <Icon className="headerOption__icon" />}

@@ -13,25 +13,15 @@ import LinkedIn from "../../images/linkedin-logo.png";
 // Components
 import Container from "../Container/Container";
 import HeaderOption from "../HeaderOption/HeaderOption";
-// Redux
-import { useDispatch } from "react-redux";
-import { logout } from "../../features/userSlice";
-// Firebase
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
+// Custom Hook
+import useLogout from "../../hooks/useLogout";
 
 function Header() {
-  const dispatch = useDispatch();
-  const logoutOfApp = () => {
-    signOut(auth)
-      .then(() => {
-        dispatch(logout());
-      })
-      .catch((error) => alert(error));
-  };
+  const logoutOfApp = useLogout()
   return (
     <div className="header">
       <Container>
+        {/* LEFT */}
         <div className="header__left">
           <img src={LinkedIn} alt="LinkedIn Icon"></img>
           <div className="header__search">
@@ -39,6 +29,7 @@ function Header() {
             <input type="text" placeholder="Search..." />
           </div>
         </div>
+        {/* RIGHT */}
         <div className="header__right">
           <HeaderOption Icon={Home} title="Home" />
           <HeaderOption Icon={SupervisorAccount} title="My Network" />
