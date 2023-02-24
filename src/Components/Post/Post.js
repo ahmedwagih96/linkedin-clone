@@ -1,4 +1,4 @@
-import "./Posts.css";
+import "./Post.css";
 import { forwardRef } from "react";
 // Materials UI
 import {

@@ -12,7 +12,7 @@ import {
 import useUser from "./useUser";
 
 const usePosts = () => {
-  const { user } = useUser();
+  const user = useUser();
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
 

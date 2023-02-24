@@ -1,20 +1,23 @@
-// Firebase
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { useCallback } from "react";
 // Redux
 import { useDispatch } from "react-redux";
 import { logout } from "../features/userSlice";
 
+// Firebase
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+
 function useLogout() {
   const dispatch = useDispatch();
+  const logOut = useCallback(() => dispatch(logout()), [dispatch]);
   const logoutOfApp = () => {
     signOut(auth)
       .then(() => {
-        dispatch(logout());
+        logOut();
       })
       .catch((error) => alert(error));
   };
-  return logoutOfApp
+  return logoutOfApp;
 }
 
 export default useLogout;

@@ -2,7 +2,7 @@ import "./Sidebar.css";
 import { Avatar } from "@mui/material";
 import useUser from "../../hooks/useUser";
 function Sidebar() {
-  const { user } = useUser();
+  const [user] = useUser();
 
   const renderRecentItems = () => {
     return ["reactjs", "programming", "software engineering", "remotework"].map(

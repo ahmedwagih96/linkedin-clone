@@ -1,34 +1,17 @@
 import "./App.css";
-
-// Components
-import Feed from "./Components/Feed/Feed";
-import Header from "./Components/Header/Header";
-import SideBar from "./Components/SideBar/Sidebar";
-import Login from "./Components/Login/Login";
-import Widgets from "./Components/Widgets/Widgets";
-import Container from "./Components/Container/Container";
+import { lazy, Suspense } from "react";
 
 // Custom useUser Hook
 import useUser from "./hooks/useUser";
 
+const Login = lazy(() => import("./Components/Login/Login"));
+const Home = lazy(() => import("./Components/Home/Home"));
+
 function App() {
-  const { user } = useUser();
+  const [user] = useUser();
   return (
     <div className="app">
-      {!user ? (
-        <Login />
-      ) : (
-        <>
-          <Header />
-          <Container>
-            <div className="app__body">
-              <SideBar />
-              <Feed />
-              <Widgets />
-            </div>
-          </Container>
-        </>
-      )}
+      <Suspense>{user ? <Home /> : <Login />}</Suspense>
     </div>
   );
 }
