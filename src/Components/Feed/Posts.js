@@ -4,20 +4,21 @@ import useFetchPosts from "../../hooks/useFetchPosts";
 import FlipMove from "react-flip-move";
 // Components
 import Post from "../Post/Post";
+import Skeletons from "../Skeletons/Skeletons";
 function Posts() {
-  const [posts] = useFetchPosts();
+  const [posts, isLoading] = useFetchPosts();
   return (
-    <FlipMove>
-      {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
-        <Post
-          key={id}
-          name={name}
-          description={description}
-          message={message}
-          photoUrl={photoUrl}
-        />
-      ))}
-    </FlipMove>
+    <>
+      {isLoading ? (
+        [...Array(6).keys()].map((i) => <Skeletons key={i} />)
+      ) : (
+        <FlipMove>
+          {posts.map(({ id, data }) => (
+            <Post key={id} data={data} />
+          ))}
+        </FlipMove>
+      )}
+    </>
   );
 }
 
