@@ -5,11 +5,12 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import useUser from "./useUser";
 
 const usePosts = () => {
-  const user = useUser();
+  const [user] = useUser();
   const [input, setInput] = useState("");
 
   const sendPost = (e) => {
     e.preventDefault();
+    console.log(user)
     const postsCol = collection(db, "posts");
     addDoc(postsCol, {
       name: user.displayName,
