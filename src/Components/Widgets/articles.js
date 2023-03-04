@@ -5,14 +5,14 @@ export const articles = [
   },
   {
     heading: "Advanced TypeScript",
-    newsubtitle: "Top news -- 999 readers",
+    subtitle: "Top news -- 999 readers",
   },
   {
     heading: "Tidy up your ES6 imports",
-    newsubtitle: "Top news -- 999 readers",
+    subtitle: "Top news -- 999 readers",
   },
   {
     heading: "All about JavaScript events",
-    newsubtitle: "Top news -- 999 readers",
+    subtitle: "Top news -- 999 readers",
   },
 ];
