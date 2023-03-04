@@ -1,13 +1,16 @@
-// Custom Hook
+import { useCallback } from "react";
 // Firebase
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
+// Redux
+import { useDispatch } from "react-redux";
+import { login } from "../features/userSlice";
 
-// Custom Hook
-import useLogin from "./useLogIn";
 
 function useSignUp() {
-  const loginToApp = useLogin();
+  const dispatch = useDispatch();
+  const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
+
   const register = (userInfo) => {
     createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
       .then((userAuth) => {
@@ -15,7 +18,7 @@ function useSignUp() {
           displayName: userInfo.name,
           photoURL: userInfo.profileURL,
         }).then(() => {
-          loginToApp(userAuth.user);
+          logIn(userAuth.user);
         });
       })
       .catch((error) => {

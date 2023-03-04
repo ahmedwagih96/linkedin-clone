@@ -12,7 +12,7 @@ import {
 // Components
 import InputOption from "../InputOption/InputOption";
 function Input() {
-    const [, sendPost, input, setInput] = usePosts()
+    const [sendPost, input, setInput] = usePosts()
   return (
     <div className="feed__inputContainer">
       <div className="feed__input">

@@ -1,12 +1,11 @@
 // Custom Hooks
-import usePosts from "../../hooks/usePosts";
+import useFetchPosts from "../../hooks/useFetchPosts";
 // Animation
 import FlipMove from "react-flip-move";
 // Components
 import Post from "../Post/Post";
 function Posts() {
-  const [posts] = usePosts();
-
+  const [posts] = useFetchPosts();
   return (
     <FlipMove>
       {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
