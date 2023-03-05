@@ -3,14 +3,15 @@ import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import useUser from "./useUser";
-
+// custom error hook
+import useError from "./useError";
 const usePosts = () => {
   const [user] = useUser();
   const [input, setInput] = useState("");
-
+  const { newError } = useError();
   const sendPost = (e) => {
     e.preventDefault();
-    console.log(user)
+    console.log(user);
     const postsCol = collection(db, "posts");
     addDoc(postsCol, {
       name: user.displayName,
@@ -18,7 +19,12 @@ const usePosts = () => {
       message: input,
       photoUrl: user.photoURL || "",
       timestamp: serverTimestamp(),
-    }).then(() => setInput(""));
+    })
+      .then(() => setInput(""))
+      .catch((error) => {
+        newError(error);
+        return;
+      });
   };
 
   return [sendPost, input, setInput];

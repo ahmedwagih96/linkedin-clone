@@ -1,0 +1,55 @@
+.error {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  opacity: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.error.show {
+  animation: fadein 0.5s forwards;
+}
+
+.error.hide {
+  animation: fadeout 0.5s forwards;
+}
+
+.error__message {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+}
+
+.error__icon {
+  color: white;
+}
+
+@keyframes fadein {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+    top: 20px;
+    opacity: 1;
+  }
+  to {
+    top: -100px;
+    opacity: 0;
+  }
+}

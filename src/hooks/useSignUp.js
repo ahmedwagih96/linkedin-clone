@@ -5,9 +5,11 @@ import { auth } from "../firebase";
 // Redux
 import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
-
+// custom error hook
+import useError from "./useError";
 
 function useSignUp() {
+  const { newError } = useError();
   const dispatch = useDispatch();
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
 
@@ -22,7 +24,8 @@ function useSignUp() {
         });
       })
       .catch((error) => {
-        return alert(error);
+        newError(error);
+        return;
       });
   };
   return [register];

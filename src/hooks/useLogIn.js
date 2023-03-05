@@ -5,9 +5,11 @@ import { login } from "../features/userSlice";
 // Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-// Custom Hook
+// custom error hook
+import useError from "./useError";
 
 function useLogIn() {
+  const { newError } = useError();
   const dispatch = useDispatch();
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
 
@@ -16,7 +18,10 @@ function useLogIn() {
       .then((userAuth) => {
         logIn(userAuth.user);
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        newError(error);
+        return;
+      });
   };
   return loginToApp;
 }
