@@ -1,10 +1,11 @@
+import "./Posts.css"
 // Custom Hooks
-import useFetchPosts from "../../hooks/useFetchPosts";
+import useFetchPosts from "../../../hooks/useFetchPosts";
 // Animation
 import FlipMove from "react-flip-move";
 // Components
-import Post from "../Post";
-import Skeletons from "../Skeletons";
+import Post from "./Post";
+import Skeletons from "../../Skeletons";
 function Posts() {
   const [posts, isLoading] = useFetchPosts();
   return (

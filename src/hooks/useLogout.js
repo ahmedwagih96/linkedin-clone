@@ -7,8 +7,10 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 // custom error hook
 import useError from "./useError";
-
+// React Router
+import { useNavigate } from 'react-router-dom'
 function useLogout() {
+  const navigate = useNavigate()
   const { newError } = useError();
   const dispatch = useDispatch();
   const logOut = useCallback(() => dispatch(logout()), [dispatch]);
@@ -16,6 +18,7 @@ function useLogout() {
     signOut(auth)
       .then(() => {
         logOut();
+        navigate("/login")
       })
       .catch((error) => {
         newError(error);

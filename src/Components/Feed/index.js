@@ -1,12 +1,12 @@
 import "./Feed.css";
 // Components
-import Input from "./Input";
+import ShareBox from "./ShareBox";
 import Posts from "./Posts";
 
 function Feed() {
   return (
     <div className="feed">
-      <Input />
+      <ShareBox />
       <Posts />
     </div>
   );

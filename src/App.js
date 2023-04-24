@@ -17,8 +17,10 @@ function App() {
   const navigate = useNavigate()
   const [user] = useUser();
   useEffect(()=>{
-    if(!user) navigate("/login")
-
+    console.log(user);
+    if(!user) {
+      navigate("/login")
+    }
   },[user, navigate])
   return (
     <div className="app">

@@ -1,4 +1,3 @@
-import "./Post.css";
 import { forwardRef } from "react";
 // Materials UI
 import {
@@ -9,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 // Components
-import InputOption from "../Feed/InputOption";
+import ShareOption from "../ShareOption";
 
 const Posts = forwardRef(
   ({ data: { name, description, message, photoUrl } }, ref) => {
@@ -26,10 +25,10 @@ const Posts = forwardRef(
           <p>{message}</p>
         </div>
         <div className="post__button">
-          <InputOption Icon={ThumbUpAltOutlined} title="Like" color="gray" />
-          <InputOption Icon={ChatOutlined} title="Comment" color="gray" />
-          <InputOption Icon={ShareOutlined} title="Share" color="gray" />
-          <InputOption Icon={SendOutlined} title="Send" color="gray" />
+          <ShareOption Icon={ThumbUpAltOutlined} title="Like" color="gray" />
+          <ShareOption Icon={ChatOutlined} title="Comment" color="gray" />
+          <ShareOption Icon={ShareOutlined} title="Share" color="gray" />
+          <ShareOption Icon={SendOutlined} title="Send" color="gray" />
         </div>
       </div>
     );
