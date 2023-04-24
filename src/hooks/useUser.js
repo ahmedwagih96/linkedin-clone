@@ -5,8 +5,10 @@ import { selectUser, login, logout } from "../features/userSlice";
 // Firebase
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-
+// React Router
+import {useNavigate } from 'react-router-dom'
 const useUser = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
@@ -15,12 +17,14 @@ const useUser = () => {
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
         logIn(userAuth);
+        navigate("/")
       } else {
         logOut();
+        navigate("/login")
       }
     });
 
-  }, [dispatch, logIn, logOut]);
+  }, [dispatch, logIn, logOut, navigate]);
 
   return [user];
 };
