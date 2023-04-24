@@ -1,8 +1,8 @@
 import "./App.css";
 import { lazy, Suspense, useEffect } from "react";
 // Custom Hooks
-import useUser from "./hooks/useUser";
-import useError from "./hooks/useError";
+import useUserStore from "./hooks/useUserStore";
+import useErrorStore from "./hooks/useErrorStore";
 // Components
 import LoadingSpinner from "./Components/LoadingSpinner/LoadingSpinner";
 import Error from "./Components/Error";
@@ -15,8 +15,8 @@ const Login = lazy(() => import("./pages/Login"));
 const Home = lazy(() => import("./pages/Home"));
 
 function App() {
-  const { error } = useError();
-  const [user] = useUser();
+  const { error } = useErrorStore();
+  const [user] = useUserStore();
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {

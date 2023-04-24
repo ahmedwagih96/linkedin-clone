@@ -6,12 +6,12 @@ import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 // custom error hook
-import useError from "./useError";
+import useErrorStore from "./useErrorStore";
 // React Router
 import { useNavigate } from 'react-router-dom'
 function useSignUp() {
   const navigate = useNavigate()
-  const { newError } = useError();
+  const { newError } = useErrorStore();
   const dispatch = useDispatch();
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
 

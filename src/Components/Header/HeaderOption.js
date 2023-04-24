@@ -1,10 +1,10 @@
 // Material UI
 import { Avatar } from "@mui/material";
 // Custom Hook
-import useUser from "../../hooks/useUser";
+import useUserStore from "../../hooks/useUserStore";
 
 function HeaderOption({ Icon, title, avatar, onClick }) {
-  const [user] = useUser();
+  const [user] = useUserStore();
   return (
     <div className="headerOption" onClick={onClick}>
       {Icon && <Icon className="headerOption__icon" />}

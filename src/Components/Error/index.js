@@ -1,11 +1,11 @@
 // custom error hook
-import useError from "../../hooks/useError";
+import useErrorStore from "../../hooks/useErrorStore";
 import ErrorIcon from '@mui/icons-material/Error';
 import CloseIcon from '@mui/icons-material/Close';
 import "./Error.css";
 
 function Error() {
-  const { error, clearError } = useError();
+  const { error, clearError } = useErrorStore();
   return (
     <div className={`error ${error.error ? "show" : "hide"}`}>
       <div className = 'error__message'>

@@ -2,16 +2,15 @@ import { useState } from "react";
 // Firebase
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import useUser from "./useUser";
+import useUserStore from "./useUserStore";
 // custom error hook
-import useError from "./useError";
+import useErrorStore from "./useErrorStore";
 const usePosts = () => {
-  const [user] = useUser();
+  const [user] = useUserStore();
   const [input, setInput] = useState("");
-  const { newError } = useError();
+  const { newError } = useErrorStore();
   const sendPost = (e) => {
     e.preventDefault();
-    console.log(user);
     const postsCol = collection(db, "posts");
     addDoc(postsCol, {
       name: user.displayName,

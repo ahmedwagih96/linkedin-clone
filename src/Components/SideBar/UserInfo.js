@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
-import useUser from "../../hooks/useUser";
+import useUserStore from "../../hooks/useUserStore";
 function UserInfo() {
-  const [user] = useUser();
+  const [user] = useUserStore();
   return (
     <div className="sidebar__userInfo">
       <img

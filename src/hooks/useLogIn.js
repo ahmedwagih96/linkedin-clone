@@ -6,12 +6,12 @@ import { login } from "../features/userSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 // custom error hook
-import useError from "./useError";
+import useErrorStore from "./useErrorStore";
 // React Router
 import { useNavigate } from 'react-router-dom'
 function useLogIn() {
   const navigate = useNavigate()
-  const { newError } = useError();
+  const { newError } = useErrorStore();
   const dispatch = useDispatch();
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
 

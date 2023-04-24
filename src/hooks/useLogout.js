@@ -6,12 +6,12 @@ import { logout } from "../features/userSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 // custom error hook
-import useError from "./useError";
+import useErrorStore from "./useErrorStore";
 // React Router
 import { useNavigate } from 'react-router-dom'
 function useLogout() {
   const navigate = useNavigate()
-  const { newError } = useError();
+  const { newError } = useErrorStore();
   const dispatch = useDispatch();
   const logOut = useCallback(() => dispatch(logout()), [dispatch]);
   const logoutOfApp = () => {
