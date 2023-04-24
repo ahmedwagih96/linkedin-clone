@@ -1,24 +1,20 @@
-import { useCallback } from "react";
-// Redux
-import { useDispatch } from "react-redux";
-import { logout } from "../features/userSlice";
 // Firebase
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
-// custom error hook
+// custom hooks
 import useErrorStore from "./useErrorStore";
+import useUserStore from "./useUserStore";
 // React Router
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 function useLogout() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { newError } = useErrorStore();
-  const dispatch = useDispatch();
-  const logOut = useCallback(() => dispatch(logout()), [dispatch]);
+  const { logOut } = useUserStore();
   const logoutOfApp = () => {
     signOut(auth)
       .then(() => {
         logOut();
-        navigate("/login")
+        navigate("/login");
       })
       .catch((error) => {
         newError(error);

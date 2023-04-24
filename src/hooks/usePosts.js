@@ -6,7 +6,7 @@ import useUserStore from "./useUserStore";
 // custom error hook
 import useErrorStore from "./useErrorStore";
 const usePosts = () => {
-  const [user] = useUserStore();
+  const {user}= useUserStore();
   const [input, setInput] = useState("");
   const { newError } = useErrorStore();
   const sendPost = (e) => {

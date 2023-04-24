@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectError, updateError, removeError } from "../features/errorSlice";
 import { useCallback } from "react";
-function useError() {
+function useErrorStore() {
   const dispatch = useDispatch();
   const newError = useCallback(
     (error) => dispatch(updateError(error)),
@@ -13,4 +13,4 @@ function useError() {
   return { error, newError, clearError };
 }
 
-export default useError;
+export default useErrorStore;

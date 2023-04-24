@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 import useUserStore from "../../hooks/useUserStore";
 
 function HeaderOption({ Icon, title, avatar, onClick }) {
-  const [user] = useUserStore();
+  const {user} = useUserStore();
   return (
     <div className="headerOption" onClick={onClick}>
       {Icon && <Icon className="headerOption__icon" />}

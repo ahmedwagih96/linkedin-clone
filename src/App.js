@@ -1,5 +1,8 @@
 import "./App.css";
 import { lazy, Suspense, useEffect } from "react";
+// Firebase
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 // Custom Hooks
 import useUserStore from "./hooks/useUserStore";
 import useErrorStore from "./hooks/useErrorStore";
@@ -16,15 +19,19 @@ const Home = lazy(() => import("./pages/Home"));
 
 function App() {
   const { error } = useErrorStore();
-  const [user] = useUserStore();
+  const { logIn, logOut } = useUserStore();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
-  }, [user, navigate]);
+    onAuthStateChanged(auth, (userAuth) => {
+      if (userAuth) {
+        logIn(userAuth);
+        navigate("/");
+      } else {
+        logOut();
+        navigate("/login");
+      }
+    });
+  }, [logIn, logOut, navigate]);
   return (
     <div className="app">
       {error.message ? <Error /> : null}

@@ -1,25 +1,21 @@
-import { useCallback } from "react";
-// Redux
-import { useDispatch } from "react-redux";
-import { login } from "../features/userSlice";
 // Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-// custom error hook
+// custom hooks
 import useErrorStore from "./useErrorStore";
+import useUserStore from "./useUserStore";
 // React Router
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 function useLogIn() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { newError } = useErrorStore();
-  const dispatch = useDispatch();
-  const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
+  const { logIn } = useUserStore();
 
   const loginToApp = (userInfo) => {
     signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
       .then((userAuth) => {
         logIn(userAuth.user);
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => {
         newError(error);
