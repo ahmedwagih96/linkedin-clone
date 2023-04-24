@@ -1,24 +1,33 @@
 import "./App.css";
-import { lazy, Suspense } from "react";
-// Custom useUser Hook
+import { lazy, Suspense, useEffect } from "react";
+// Custom Hooks
 import useUser from "./hooks/useUser";
-// custom error hook
 import useError from "./hooks/useError";
 // Components
 import LoadingSpinner from "./Components/LoadingSpinner/LoadingSpinner";
-import Error from "./Components/Error/Error";
-
-const Login = lazy(() => import("./Components/Login/Login"));
-const Home = lazy(() => import("./Components/Home/Home"));
+import Error from "./Components/Error";
+// React Router
+import { Route, Routes,  useNavigate } from 'react-router-dom'
+// Pages
+const Login = lazy(() => import("./pages/Login"));
+const Home = lazy(() => import("./pages/Home"));
 
 function App() {
   const { error } = useError();
+  const navigate = useNavigate()
   const [user] = useUser();
+  useEffect(()=>{
+    if(!user) navigate("/login")
+
+  },[user, navigate])
   return (
     <div className="app">
       {error.message ? <Error /> : null}
       <Suspense fallback={<LoadingSpinner />}>
-        {user ? <Home /> : <Login />}
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path = '/login' element={<Login/>}/>
+        </Routes>
       </Suspense>
     </div>
   );

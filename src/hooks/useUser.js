@@ -19,6 +19,7 @@ const useUser = () => {
         logOut();
       }
     });
+
   }, [dispatch, logIn, logOut]);
 
   return [user];

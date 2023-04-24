@@ -1,4 +1,3 @@
-import "./HeaderOption.css";
 // Material UI
 import { Avatar } from "@mui/material";
 // Custom Hook

@@ -1,9 +1,9 @@
 // Components
-import Feed from "../Feed/Feed";
-import Header from "../Header/Header";
-import SideBar from "../SideBar/Sidebar";
-import Widgets from "../Widgets/Widgets";
-import Container from "../Container/Container";
+import Feed from "../../Components/Feed";
+import Header from "../../Components/Header";
+import SideBar from "../../Components/SideBar";
+import Widgets from "../../Components/Widgets";
+import Container from "../../Components/Container";
 
 function Home() {
   return (

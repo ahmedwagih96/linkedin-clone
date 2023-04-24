@@ -59,3 +59,34 @@
     gap: 20px;
   }
 }
+
+.headerOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.headerOption:hover {
+  color: black;
+}
+
+.headerOption__title {
+  font-size: 12px;
+  font-weight: 400;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .headerOption__title{
+      display: block;
+  }
+}
+
+.headerOption__icon{
+    object-fit: contain;
+    height: 25px !important;
+    width: 25px !important;
+}

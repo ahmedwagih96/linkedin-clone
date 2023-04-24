@@ -2,6 +2,7 @@ import React from "react";
 // Custom Hook
 import useSignUp from "../../hooks/useSignUp";
 import useInput from "../../hooks/useInput";
+
 function SignUpForm({ handleSign }) {
   const [register] = useSignUp();
   const [userInfo, updateUserInfo] = useInput();
@@ -41,7 +42,6 @@ function SignUpForm({ handleSign }) {
           name="password"
           placeholder="Password"
           value={userInfo.password}
-          autoComplete="on"
           onChange={(e) => updateUserInfo(e)}
           required
         />

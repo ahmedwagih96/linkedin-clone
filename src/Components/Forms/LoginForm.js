@@ -2,7 +2,6 @@ import React from "react";
 // Custom Hook
 import useLogin from "../../hooks/useLogIn";
 import useInput from "../../hooks/useInput";
-
 function LoginForm({ handleSign }) {
   const loginToApp = useLogin();
   const [userInfo, updateUserInfo] = useInput();
@@ -26,7 +25,6 @@ function LoginForm({ handleSign }) {
           name="password"
           placeholder="Password"
           value={userInfo.password}
-          autoComplete="on"
           onChange={(e) => updateUserInfo(e)}
         />
         <button type="submit" onClick={(e) => SubmitForm(e)}>
@@ -35,8 +33,8 @@ function LoginForm({ handleSign }) {
       </form>
       <p>
         Not a member?{" "}
-        <span className="login__register" onClick={handleSign}>
-          Register Now
+         <span className="login__register" onClick={handleSign}>
+          Sign Up 
         </span>
       </p>
     </>

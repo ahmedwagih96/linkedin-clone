@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 // Components
-import InputOption from "../InputOption/InputOption";
+import InputOption from "../Feed/InputOption";
 
 const Posts = forwardRef(
   ({ data: { name, description, message, photoUrl } }, ref) => {

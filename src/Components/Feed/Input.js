@@ -10,7 +10,7 @@ import {
   } from "@mui/icons-material";
   
 // Components
-import InputOption from "../InputOption/InputOption";
+import InputOption from "./InputOption";
 function Input() {
     const [sendPost, input, setInput] = usePosts()
   return (

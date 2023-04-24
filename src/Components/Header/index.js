@@ -11,8 +11,8 @@ import {
 // Images
 import LinkedIn from "../../images/linkedin-logo.png";
 // Components
-import Container from "../Container/Container";
-import HeaderOption from "../HeaderOption/HeaderOption";
+import Container from "../Container";
+import HeaderOption from "./HeaderOption";
 // Custom Hook
 import useLogout from "../../hooks/useLogout";
 
