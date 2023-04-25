@@ -51,3 +51,11 @@
   color: #0177b7;
   cursor: pointer;
 }
+
+.form__error{
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0;
+}

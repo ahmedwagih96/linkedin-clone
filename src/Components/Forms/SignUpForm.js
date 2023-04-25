@@ -1,53 +1,61 @@
-import React from "react";
+import { useForm } from "react-hook-form";
 // Custom Hook
 import useSignUp from "../../hooks/useSignUp";
-import useInput from "../../hooks/useInput";
 
 function SignUpForm({ handleSign }) {
-  const [register] = useSignUp();
-  const [userInfo, updateUserInfo] = useInput();
+  const [registerNewUser] = useSignUp();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
-  const SubmitForm = (e) => {
-    e.preventDefault();
-    register(userInfo);
+  const SubmitForm = (values) => {
+    registerNewUser(values);
   };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(SubmitForm)}>
         <input
           type="text"
-          name="name"
-          placeholder="Full name"
-          required
-          value={userInfo.name}
-          onChange={(e) => updateUserInfo(e)}
+          placeholder="Full Name*"
+          {...register("name", {
+            required: "Required",
+          })}
         />
+        <p className="form__error">
+          {" "}
+          {errors.name && "Please provide your name"}
+        </p>
         <input
           type="text"
-          name="profileURL"
           placeholder="Profile pic URL (optional)"
-          value={userInfo.profileURL}
-          onChange={(e) => updateUserInfo(e)}
+          {...register("profileURL")}
         />
         <input
           type="email"
-          name="email"
           placeholder="Email"
-          value={userInfo.email}
-          onChange={(e) => updateUserInfo(e)}
-          required
+          {...register("email", {
+            required: "Required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Please provide a valid Email",
+            },
+          })}
         />
+        <p className="form__error"> {errors.email && errors.email.message}</p>
         <input
           type="password"
-          name="password"
           placeholder="Password"
-          value={userInfo.password}
-          onChange={(e) => updateUserInfo(e)}
-          required
+          {...register("password", {
+            required: "Required",
+          })}
         />
-        <button type="submit" onClick={(e) => SubmitForm(e)}>
-          Sign Up
-        </button>
+        <p className="form__error">
+          {" "}
+          {errors.password && "Please provide a password"}
+        </p>
+        <button type="submit">Sign Up</button>
       </form>
       <p>
         Already have an account?{" "}

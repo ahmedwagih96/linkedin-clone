@@ -22,11 +22,14 @@ function App() {
   const { logIn, logOut } = useUserStore();
   const navigate = useNavigate();
   useEffect(() => {
+    // Check if user is logged in / out of the app
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
+        // if logged in, add user to global state and navigate to homepage
         logIn(userAuth);
         navigate("/");
       } else {
+        // if logged out, set user as null and navigate to login page
         logOut();
         navigate("/login");
       }
@@ -34,6 +37,7 @@ function App() {
   }, [logIn, logOut, navigate]);
   return (
     <div className="app">
+      {/* ERROR MODAL */}
       {error.message ? <Error /> : null}
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>

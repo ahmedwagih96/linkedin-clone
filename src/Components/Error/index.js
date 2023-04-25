@@ -10,7 +10,7 @@ function Error() {
     <div className={`error ${error.error ? "show" : "hide"}`}>
       <div className = 'error__message'>
         <ErrorIcon className='error__icon'/>
-      {error.message}
+      {error.message.replaceAll("-", " ").toUpperCase()}
       </div>
         <CloseIcon onClick = {clearError} className ='error__icon'/>
     </div>

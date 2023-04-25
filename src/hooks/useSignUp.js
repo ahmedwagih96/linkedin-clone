@@ -15,7 +15,7 @@ function useSignUp() {
   const dispatch = useDispatch();
   const logIn = useCallback((user) => dispatch(login(user)), [dispatch]);
 
-  const register = (userInfo) => {
+  const registerNewUser = (userInfo) => {
     createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
       .then((userAuth) => {
         updateProfile(userAuth.user, {
@@ -31,7 +31,7 @@ function useSignUp() {
         return;
       });
   };
-  return [register];
+  return [registerNewUser];
 }
 
 export default useSignUp;

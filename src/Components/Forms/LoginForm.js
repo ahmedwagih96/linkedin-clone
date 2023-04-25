@@ -1,40 +1,51 @@
-import React from "react";
+import { useForm } from "react-hook-form";
 // Custom Hook
 import useLogin from "../../hooks/useLogIn";
-import useInput from "../../hooks/useInput";
 function LoginForm({ handleSign }) {
   const loginToApp = useLogin();
-  const [userInfo, updateUserInfo] = useInput();
-
-  const SubmitForm = (e) => {
-    e.preventDefault();
-    loginToApp(userInfo);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const SubmitForm = (values) => {
+    loginToApp(values);
   };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(SubmitForm)}>
         <input
           type="email"
-          name="email"
           placeholder="Email"
-          value={userInfo.email}
-          onChange={(e) => updateUserInfo(e)}
+          {...register("email", {
+            required: "Required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Please provide a valid Email",
+            },
+          })}
         />
+        <p className="form__error">
+          {" "}
+          {errors.email && errors.email.message}
+        </p>
         <input
           type="password"
-          name="password"
           placeholder="Password"
-          value={userInfo.password}
-          onChange={(e) => updateUserInfo(e)}
+          {...register("password", {
+            required: "Required",
+          })}
         />
-        <button type="submit" onClick={(e) => SubmitForm(e)}>
-          Sign In
-        </button>
+        <p className="form__error">
+          {" "}
+          {errors.password && "Please provide a password"}
+        </p>
+        <button type="submit">Sign In</button>
       </form>
       <p>
         Not a member?{" "}
-         <span className="login__register" onClick={handleSign}>
-          Sign Up 
+        <span className="login__register" onClick={handleSign}>
+          Sign Up
         </span>
       </p>
     </>
