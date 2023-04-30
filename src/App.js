@@ -10,9 +10,7 @@ import useErrorStore from "./hooks/useErrorStore";
 import LoadingSpinner from "./Components/LoadingSpinner/LoadingSpinner";
 import Error from "./Components/Error";
 // React Router
-import { Route, Routes } from "react-router-dom";
-// React Router
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 // Pages
 const Login = lazy(() => import("./pages/Login"));
 const Home = lazy(() => import("./pages/Home"));
