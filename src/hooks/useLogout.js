@@ -13,8 +13,8 @@ function useLogout() {
   const logoutOfApp = () => {
     signOut(auth)
       .then(() => {
-        logOut();
         navigate("/login");
+        logOut();
       })
       .catch((error) => {
         newError(error);

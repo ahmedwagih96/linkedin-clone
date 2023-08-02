@@ -20,6 +20,7 @@ function App() {
   const { logIn, logOut } = useUserStore();
   const navigate = useNavigate();
   useEffect(() => {
+    navigate("/login")
     // Check if user is logged in / out of the app
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
@@ -32,7 +33,7 @@ function App() {
         navigate("/login");
       }
     });
-  }, [logIn, logOut, navigate]);
+  }, []);
   return (
     <div className="app">
       {/* ERROR MODAL */}
